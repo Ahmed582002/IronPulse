@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:store/core/errors/error_model.dart';
+import 'package:iron_pulse/core/errors/error_model.dart';
 
 class ServerException implements Exception {
   final ErrorModel errModel;
