@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iron_pulse/core/constants/routes.dart';
+import 'package:iron_pulse/features/auth/cubit/login_cubit.dart';
+import 'package:iron_pulse/features/auth/presentation/login_screen.dart';
 import 'package:iron_pulse/features/onboarding/cubit/onboarding_cubit.dart';
 import 'package:iron_pulse/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:iron_pulse/features/splash/cubit/splash_cubit.dart';
@@ -22,6 +24,14 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (_) => OnboardingCubit(),
             child: const OnBoardingScreen(),
+          ),
+        );
+
+      case AppRoute.login:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => LoginCubit(),
+            child: const LoginScreen(),
           ),
         );
 

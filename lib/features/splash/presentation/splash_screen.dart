@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iron_pulse/core/constants/colors.dart';
+import 'package:iron_pulse/core/constants/imgaes.dart';
 import 'package:iron_pulse/core/themes/responsive.dart';
 import 'package:iron_pulse/features/splash/cubit/splash_cubit.dart';
 import 'package:iron_pulse/features/splash/cubit/splash_state.dart';
@@ -20,7 +21,7 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: context.hp(0.05)),
-            Image.asset("assets/images/splash.png", height: context.hp(0.58)),
+            Image.asset(AppImages.splash, height: context.hp(0.58)),
             Center(
               child: Image.asset(
                 "assets/images/logo.png",

@@ -1,5 +1,7 @@
+import 'package:dartz/dartz.dart';
 import 'package:iron_pulse/core/api/api_consumer.dart';
 import 'package:iron_pulse/core/api/end_ponits.dart';
+import 'package:iron_pulse/core/errors/exceptions.dart';
 import 'package:iron_pulse/shared/models/plan_model.dart';
 import 'package:iron_pulse/shared/models/trainer_model.dart';
 
@@ -8,10 +10,18 @@ class HomeRepo {
 
   HomeRepo({required this.api});
 
-  Future<List<PlanModel>> getPlans() async {
-    final response = await api.get(EndPoint.plans);
+  Future<Either<String, List<PlanModel>>> getPlans() async {
+    try {
+      final response = await api.get(EndPoint.plans);
 
-    return List<PlanModel>.from(response.map((e) => PlanModel.fromJson(e)));
+      final plans = (response as List)
+          .map((e) => PlanModel.fromJson(e))
+          .toList();
+
+      return Right(plans);
+    } on ServerException catch (e) {
+      return Left(e.errModel.errorMessage);
+    }
   }
 
   Future<List<TrainerModel>> getTrainers() async {
