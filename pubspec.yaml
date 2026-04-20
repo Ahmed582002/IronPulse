@@ -41,6 +41,7 @@ dependencies:
   dartz:
   shared_preferences:
   dio:
+  image_picker:
 
 dev_dependencies:
   flutter_test:

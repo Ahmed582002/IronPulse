@@ -1,10 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iron_pulse/core/constants/routes.dart';
+import 'package:iron_pulse/core/services/firebase_service.dart';
 import 'package:iron_pulse/features/auth/cubit/login_cubit.dart';
 import 'package:iron_pulse/features/auth/presentation/login_screen.dart';
 import 'package:iron_pulse/features/onboarding/cubit/onboarding_cubit.dart';
 import 'package:iron_pulse/features/onboarding/presentation/onboarding_screen.dart';
+import 'package:iron_pulse/features/profile/cubit/profile_cubit.dart';
+import 'package:iron_pulse/features/profile/data/user_repo.dart';
+import 'package:iron_pulse/features/profile/presentation/edit_profile_screen.dart';
+import 'package:iron_pulse/features/profile/presentation/profile_screen.dart';
 import 'package:iron_pulse/features/splash/cubit/splash_cubit.dart';
 import 'package:iron_pulse/features/splash/presentation/splash_screen.dart';
 
@@ -32,6 +38,26 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (_) => LoginCubit(),
             child: const LoginScreen(),
+          ),
+        );
+
+      case AppRoute.profile:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                ProfileCubit(UserRepo(FirebaseService(), FirebaseAuth.instance))
+                  ..getUserProfile(),
+            child: const ProfileScreen(),
+          ),
+        );
+
+      case AppRoute.editProfile:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) =>
+                ProfileCubit(UserRepo(FirebaseService(), FirebaseAuth.instance))
+                  ..getUserProfile(),
+            child: const EditProfileScreen(),
           ),
         );
 

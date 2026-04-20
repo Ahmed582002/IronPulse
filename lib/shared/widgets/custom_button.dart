@@ -4,8 +4,18 @@ import 'package:iron_pulse/core/constants/colors.dart';
 class CustomButton extends StatelessWidget {
   final String text;
   final void Function()? onPressed;
+  final Color color;
+  final Color textColor;
+  final double fontSize;
 
-  const CustomButton({super.key, required this.text, required this.onPressed});
+  const CustomButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.color = AppColors.primary,
+    this.textColor = Colors.white,
+    this.fontSize = 18,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,22 +26,20 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           elevation: 6,
-          shadowColor: AppColors.primary,
+          shadowColor: color,
           padding: EdgeInsets.zero,
         ),
         child: Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: AppColors.primary,
+            color: color,
           ),
           child: Text(
             text,
-            style: const TextStyle(
-              fontFamily: "PlusJakartaSans",
-              fontWeight: FontWeight.w700,
-              fontSize: 18,
-              color: Colors.white,
+            style: Theme.of(context).textTheme.displayLarge!.copyWith(
+              fontSize: fontSize,
+              color: textColor,
             ),
           ),
         ),
