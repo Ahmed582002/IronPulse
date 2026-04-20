@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1059405127167",
+    "project_id": "ironpulse-2ca24",
+    "storage_bucket": "ironpulse-2ca24.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059405127167:android:9192b8c4982e13f42f9bca",
+        "android_client_info": {
+          "package_name": "com.example.iron_pulse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAjy-Dy96k5AvPaO7g6xe77WpRWNsl9lU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
