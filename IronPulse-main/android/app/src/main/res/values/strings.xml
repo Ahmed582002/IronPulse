@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">iron_pulse</string>
+
+    <string name="facebook_app_id">1379083534252864</string>
+    <string name="facebook_client_token">05af75dc2d0c8ee9bc90d312803c3c25</string>
+</resources>
