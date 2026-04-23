@@ -5,6 +5,8 @@ import 'package:iron_pulse/features/auth/cubit/login_cubit.dart';
 import 'package:iron_pulse/features/auth/presentation/login_screen.dart';
 import 'package:iron_pulse/features/onboarding/cubit/onboarding_cubit.dart';
 import 'package:iron_pulse/features/onboarding/presentation/onboarding_screen.dart';
+import 'package:iron_pulse/features/plan%20details/presentation/cubit/plandetails_cubit.dart';
+import 'package:iron_pulse/features/plan%20details/presentation/views/plan_details_view.dart';
 import 'package:iron_pulse/features/splash/cubit/splash_cubit.dart';
 import 'package:iron_pulse/features/splash/presentation/splash_screen.dart';
 
@@ -32,6 +34,13 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (_) => LoginCubit(),
             child: const LoginScreen(),
+          ),
+        );
+      case AppRoute.planDetails:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => PlandetailsCubit(),
+            child: const PlanDetailsView(),
           ),
         );
 
