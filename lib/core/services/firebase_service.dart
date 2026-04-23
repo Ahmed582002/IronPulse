@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class FirebaseService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -68,5 +69,57 @@ class FirebaseService {
   /// DELETE
   Future<void> delete({required String collection, required String id}) async {
     await _firestore.collection(collection).doc(id).delete();
+  }
+
+  Future<void> createUserWithId({
+    required String collection,
+    required String id,
+    required Map<String, dynamic> data,
+  }) async {
+    await _firestore.collection(collection).doc(id).set(data);
+  }
+
+  Future<UserCredential> login({
+    required String email,
+    required String password,
+  }) async {
+    return await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  }
+
+  Future<UserCredential> register({
+    required String email,
+    required String password,
+  }) async {
+    return await _auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  }
+
+  Future<void> signInWithGoogle() async {
+    // final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // final GoogleSignInAuthentication googleAuth =
+    //     await googleUser!.authentication;
+
+    // final credential = GoogleAuthProvider.credential(
+    //   accessToken: googleAuth.accessToken,
+    //   idToken: googleAuth.idToken,
+    // );
+
+    // return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  Future<UserCredential> signInWithFacebook() async {
+    final LoginResult result = await FacebookAuth.instance.login();
+
+    final OAuthCredential credential = FacebookAuthProvider.credential(
+      result.accessToken!.tokenString,
+    );
+
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }

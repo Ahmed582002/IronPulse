@@ -14,12 +14,11 @@ class UserRepo {
 
   Future<Either<Failure, (UserModel, Uint8List?)>> loadUserData() async {
     try {
-      String? userId =
-          "bG7V00cfCSOKZM0RG6v5rwspSo23"; // firebaseService.getUserId()
+      String? userId = firebaseService.getUserId();
 
       final doc = await firebaseService.readOne(
         collection: "users",
-        id: userId,
+        id: userId ?? "",
       );
 
       if (!doc.exists) {

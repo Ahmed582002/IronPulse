@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iron_pulse/core/constants/routes.dart';
 import 'package:iron_pulse/core/services/cache_helper.dart';
+import 'package:iron_pulse/core/services/firebase_service.dart';
 import 'package:iron_pulse/features/splash/cubit/splash_state.dart';
 import 'dart:async';
 
@@ -8,6 +9,7 @@ class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(SplashInitial()) {
     startLoading();
   }
+  final service = FirebaseService();
 
   Timer? _timer;
 
@@ -35,7 +37,11 @@ class SplashCubit extends Cubit<SplashState> {
         CacheHelper().getData(key: "seenOnboarding") ?? false;
 
     if (seenOnboarding) {
-      emit(SplashNavigate(AppRoute.login));
+      if (service.isUserLoggedIn()) {
+        emit(SplashNavigate(AppRoute.home));
+      } else {
+        emit(SplashNavigate(AppRoute.login));
+      }
     } else {
       emit(SplashNavigate(AppRoute.onboarding));
     }
