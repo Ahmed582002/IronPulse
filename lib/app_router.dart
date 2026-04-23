@@ -1,18 +1,22 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iron_pulse/core/api/dio_consumer.dart';
 import 'package:iron_pulse/core/constants/routes.dart';
 import 'package:iron_pulse/core/services/firebase_service.dart';
 import 'package:iron_pulse/features/auth/cubit/login_cubit.dart';
 import 'package:iron_pulse/features/auth/cubit/signup_cubit.dart';
 import 'package:iron_pulse/features/auth/presentation/login_screen.dart';
 import 'package:iron_pulse/features/auth/presentation/signup_screen.dart';
+import 'package:iron_pulse/features/home/cubit/p_lan_cubit.dart';
+import 'package:iron_pulse/features/home/data/home_repo.dart';
+import 'package:iron_pulse/features/home/presentation/main_screen.dart';
 import 'package:iron_pulse/features/onboarding/cubit/onboarding_cubit.dart';
 import 'package:iron_pulse/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:iron_pulse/features/profile/cubit/profile_cubit.dart';
 import 'package:iron_pulse/features/profile/data/user_repo.dart';
 import 'package:iron_pulse/features/profile/presentation/edit_profile_screen.dart';
-import 'package:iron_pulse/features/profile/presentation/profile_screen.dart';
 import 'package:iron_pulse/features/splash/cubit/splash_cubit.dart';
 import 'package:iron_pulse/features/splash/presentation/splash_screen.dart';
 
@@ -51,13 +55,22 @@ class AppRouter {
           ),
         );
 
-      case AppRoute.profile:
+      case AppRoute.main:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) =>
-                ProfileCubit(UserRepo(FirebaseService(), FirebaseAuth.instance))
-                  ..getUserProfile(),
-            child: const ProfileScreen(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => PLanCubit(
+                  repo: HomeRepo(api: DioConsumer(dio: Dio())),
+                )..getallPlan(),
+              ),
+              BlocProvider(
+                create: (context) => ProfileCubit(
+                  UserRepo(FirebaseService(), FirebaseAuth.instance),
+                )..getUserProfile(),
+              ),
+            ],
+            child: const MainScreen(),
           ),
         );
 
