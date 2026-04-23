@@ -30,7 +30,6 @@ class signupScreen extends StatelessWidget {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.error)));
-     
         }
       },
       builder: (context, state) {
@@ -117,20 +116,20 @@ class signupScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: CustomButton(
                       text: state is Signuploading
-    ? "Loading..."
-    : "Create Account",
+                          ? "Loading..."
+                          : "Create Account",
 
-onPressed: state is Signuploading
-    ? null
-    : () {
-        if (formsignup.currentState!.validate()) {
-          context.read<SignupCubit>().signup(
-            name: nameController.text,
-            email: emailsignController.text,
-            password: passwordsignController.text,
-          );
-        }
-      },
+                      onPressed: state is Signuploading
+                          ? null
+                          : () {
+                              if (formsignup.currentState!.validate()) {
+                                context.read<SignupCubit>().signup(
+                                  name: nameController.text,
+                                  email: emailsignController.text,
+                                  password: passwordsignController.text,
+                                );
+                              }
+                            },
                     ),
                   ),
 
@@ -163,8 +162,9 @@ onPressed: state is Signuploading
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GestureDetector(
-                           onTap: () => context.read<SignupCubit>().signUpWithGoogle(),
-                            
+                        onTap: () =>
+                            context.read<SignupCubit>().signUpWithGoogle(),
+
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
