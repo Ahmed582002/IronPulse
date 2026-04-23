@@ -34,8 +34,8 @@ It uses Cubit for state management and follows clean architecture principles.
 
 ### Home Screens
 <p align="center">
-  <img src="assets/screenshots/home.jpg" width="220"/>
-  <img src="assets/screenshots/trainers.jpg" width="220"/>
+  <img src="assets/screenshots/home2.jpg" width="220"/>
+  <img src="assets/screenshots/trainers2.jpg" width="220"/>
   <img src="assets/screenshots/profile.jpg" width="220"/>
   <img src="assets/screenshots/editprofile.jpg" width="220"/>
 </p>
