@@ -12,6 +12,9 @@ import 'package:iron_pulse/features/onboarding/cubit/onboarding_cubit.dart';
 import 'package:iron_pulse/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:iron_pulse/features/splash/cubit/splash_cubit.dart';
 import 'package:iron_pulse/features/splash/presentation/splash_screen.dart';
+import 'package:iron_pulse/features/trainer/data/cubit/trainer_cubit.dart';
+import 'package:iron_pulse/features/trainer/data/trainerRepo.dart';
+import 'package:iron_pulse/features/trainer/presentation/view/trainsPage.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -39,12 +42,24 @@ class AppRouter {
             child: const LoginScreen(),
           ),
         );
-case AppRoute.homeplan:
-return MaterialPageRoute(builder:  (_)=>BlocProvider(
-      create: (context) => PLanCubit(
-        repo: HomeRepo(api: DioConsumer(dio: Dio())),
-      )..getallPlan(),
-      child: PlanHome()));
+      case AppRoute.homeplan:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => PLanCubit(
+              repo: HomeRepo(api: DioConsumer(dio: Dio())),
+            )..getallPlan(),
+            child: PlanHome(),
+          ),
+        );
+      case AppRoute.trainers:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => TrainerCubit(
+              repo: Trainerrepo(api: DioConsumer(dio: Dio())),
+            )..getallTrainer(),
+            child: TrainersPage(),
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(body: Center(child: Text("No route found"))),

@@ -3,7 +3,7 @@ import 'package:iron_pulse/core/api/api_consumer.dart';
 import 'package:iron_pulse/core/api/end_ponits.dart';
 import 'package:iron_pulse/core/errors/exceptions.dart';
 import 'package:iron_pulse/features/home/data/model/plan_model.dart';
-import 'package:iron_pulse/shared/models/trainer_model.dart';
+
 
 class HomeRepo {
   final ApiConsumer api;
@@ -24,11 +24,5 @@ class HomeRepo {
     }
   }
 
-  Future<List<TrainerModel>> getTrainers() async {
-    final response = await api.get(EndPoint.trainers);
-
-    final List trainers = response[ApiKey.trainers];
-
-    return trainers.map((e) => TrainerModel.fromJson(e)).toList();
-  }
+  
 }
