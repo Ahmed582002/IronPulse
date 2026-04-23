@@ -38,7 +38,7 @@ class SplashCubit extends Cubit<SplashState> {
 
     if (seenOnboarding) {
       if (service.isUserLoggedIn()) {
-        emit(SplashNavigate(AppRoute.home));
+        emit(SplashNavigate(AppRoute.main));
       } else {
         emit(SplashNavigate(AppRoute.login));
       }

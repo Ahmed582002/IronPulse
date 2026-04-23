@@ -10,7 +10,9 @@ import 'package:iron_pulse/features/auth/cubit/signup_cubit.dart';
 import 'package:iron_pulse/features/auth/presentation/login_screen.dart';
 import 'package:iron_pulse/features/auth/presentation/signup_screen.dart';
 import 'package:iron_pulse/features/home/cubit/p_lan_cubit.dart';
+import 'package:iron_pulse/features/home/cubit/trainer_cubit.dart';
 import 'package:iron_pulse/features/home/data/home_repo.dart';
+import 'package:iron_pulse/features/home/data/trainerRepo.dart';
 import 'package:iron_pulse/features/home/presentation/main_screen.dart';
 import 'package:iron_pulse/features/onboarding/cubit/onboarding_cubit.dart';
 import 'package:iron_pulse/features/onboarding/presentation/onboarding_screen.dart';
@@ -63,6 +65,11 @@ class AppRouter {
                 create: (context) => PLanCubit(
                   repo: HomeRepo(api: DioConsumer(dio: Dio())),
                 )..getallPlan(),
+              ),
+              BlocProvider(
+                create: (context) => TrainerCubit(
+                  repo: Trainerrepo(api: DioConsumer(dio: Dio())),
+                )..getallTrainer(),
               ),
               BlocProvider(
                 create: (context) => ProfileCubit(
