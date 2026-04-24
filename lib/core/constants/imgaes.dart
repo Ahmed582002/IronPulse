@@ -7,4 +7,5 @@ class AppImages {
   static const String google = "$rootImages/google.png";
   static const String favAppBar = "$rootImages/favAppBar.png";
   static const String exersiceDAy = "$rootImages/dayExersice.png";
+  static const String recoveryIcon = "$rootImages/recoveryIcon.png";
 }

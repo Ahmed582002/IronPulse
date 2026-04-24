@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iron_pulse/core/constants/colors.dart';
+import 'package:iron_pulse/core/constants/imgaes.dart';
 import 'package:iron_pulse/core/themes/responsive.dart';
 import 'package:iron_pulse/features/plan%20details/data/models/work_out_plan.dart';
 import 'package:iron_pulse/features/plan%20details/presentation/components/day_info.dart';
+import 'package:iron_pulse/features/plan%20details/presentation/components/recovery_day.dart';
 import 'package:iron_pulse/features/plan%20details/presentation/components/row_of_info.dart';
 
 class PlanDetailsComponents extends StatelessWidget {
@@ -91,7 +93,7 @@ class PlanDetailsComponents extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          
 
           ListView.builder(
            shrinkWrap: true,
@@ -99,10 +101,26 @@ class PlanDetailsComponents extends StatelessWidget {
             itemCount: 2,
             itemBuilder: (context , index){
               return Padding(
-                padding: const EdgeInsets.only( bottom: 16.0),
+                padding: const EdgeInsets.only( top: 16.0),
                 child: DayInfo(workoutPlanModel: workoutPlanModel , numday: index+1,),
               );
-            })
+            }),
+
+            //Recovery day
+            RecoveryDay(),
+           
+    SizedBox(height: 27,),
+           Container(
+            padding: EdgeInsets.all( 16),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: AppColors.primary
+            ),
+            child: Center(
+              child: Text("START WORKOUT" , style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 16 , color: Colors.white),),
+            ),
+           )
          
          
       
@@ -111,7 +129,6 @@ class PlanDetailsComponents extends StatelessWidget {
     );
   }
 }
-
 
 
 Widget _statItem(
@@ -151,4 +168,5 @@ Widget _statItem(
     ),
   );
 }
+
 
