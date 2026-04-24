@@ -6,6 +6,8 @@ import 'package:iron_pulse/features/plan%20details/data/models/work_out_plan.dar
 import 'package:iron_pulse/features/plan%20details/presentation/components/day_info.dart';
 import 'package:iron_pulse/features/plan%20details/presentation/components/recovery_day.dart';
 import 'package:iron_pulse/features/plan%20details/presentation/components/row_of_info.dart';
+import 'package:iron_pulse/features/plan%20details/presentation/components/start_work_out.dart';
+import 'package:iron_pulse/features/plan%20details/presentation/components/stat_item.dart';
 
 class PlanDetailsComponents extends StatelessWidget {
   const PlanDetailsComponents({super.key, required this.workoutPlanModel});
@@ -14,8 +16,6 @@ class PlanDetailsComponents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
-
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
@@ -49,22 +49,22 @@ class PlanDetailsComponents extends StatelessWidget {
           const SizedBox(height: 16),
           Row(
             children: [
-              _statItem(
-                context,
+              StatItem(
+              
                 icon: Icons.timer_outlined,
                 label: 'Duration',
                 value: '60-90m',
               ),
               const SizedBox(width: 16),
-              _statItem(
-                context,
+              StatItem(
+                
                 icon: Icons.fitness_center,
                 label: 'Frequency',
                 value: '${workoutPlanModel.durationWeeks} Weeks',
               ),
               const SizedBox(width: 16),
-              _statItem(
-                context,
+              StatItem(
+                
                 icon: Icons.bolt_outlined,
                 label: 'Intensity',
                 value: workoutPlanModel.level,
@@ -93,80 +93,34 @@ class PlanDetailsComponents extends StatelessWidget {
               ),
             ],
           ),
-          
 
           ListView.builder(
-           shrinkWrap: true,
-           physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             itemCount: 2,
-            itemBuilder: (context , index){
+            itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.only( top: 16.0),
-                child: DayInfo(workoutPlanModel: workoutPlanModel , numday: index+1,),
+                padding: const EdgeInsets.only(top: 16.0),
+                child: DayInfo(
+                  workoutPlanModel: workoutPlanModel,
+                  numday: index + 1,
+                ),
               );
-            }),
+            },
+          ),
 
-            //Recovery day
-            RecoveryDay(),
-           
-    SizedBox(height: 27,),
-           Container(
-            padding: EdgeInsets.all( 16),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: AppColors.primary
-            ),
-            child: Center(
-              child: Text("START WORKOUT" , style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 16 , color: Colors.white),),
-            ),
-           )
-         
-         
-      
+          //Recovery day
+          RecoveryDay(),
+
+          SizedBox(height: 27),
+
+          //staer workout
+          StrartWorkOut(),
         ],
       ),
     );
   }
 }
 
-
-Widget _statItem(
-  BuildContext context, {
-  required IconData icon,
-  required String label,
-  required String value,
-}) {
-  return Expanded(
-    child: Container(
-      height: 110,
-      padding: const EdgeInsets.only(top: 12),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1E293B).withAlpha(80),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        children: [
-          Icon(icon, color: const Color(0xFF4A9EFF), size: 16),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: Theme.of(
-              context,
-            ).textTheme.displayMedium!.copyWith(fontSize: 12),
-          ),
-          const SizedBox(height: 3),
-          Text(
-            value,
-            textAlign: TextAlign.center,
-            style: Theme.of(
-              context,
-            ).textTheme.displayLarge!.copyWith(fontSize: 16),
-          ),
-        ],
-      ),
-    ),
-  );
-}
 
 
