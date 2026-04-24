@@ -39,7 +39,7 @@ class AppRouter {
       case AppRoute.planDetails:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (_) => PlandetailsCubit(),
+            create: (_) => PlandetailsCubit()..getPlanDetails(),
             child: const PlanDetailsView(),
           ),
         );

@@ -6,4 +6,5 @@ class AppImages {
   static const String login = "$rootImages/login.png";
   static const String google = "$rootImages/google.png";
   static const String favAppBar = "$rootImages/favAppBar.png";
+  static const String exersiceDAy = "$rootImages/dayExersice.png";
 }
