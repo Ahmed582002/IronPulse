@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iron_pulse/features/home/cubit/main_cubit.dart';
 import 'package:iron_pulse/features/home/cubit/main_state.dart';
 import 'package:iron_pulse/features/home/presentation/HomePlan_View.dart';
+import 'package:iron_pulse/features/home/presentation/favorites_page.dart';
 import 'package:iron_pulse/features/home/presentation/trainsPage.dart';
 import 'package:iron_pulse/features/profile/presentation/profile_screen.dart';
 import 'package:iron_pulse/shared/widgets/home/navbar.dart';
@@ -21,7 +22,7 @@ class MainScreen extends StatelessWidget {
           final screens = [
             PlanHome(),
             TrainersPage(),
-            Container(),
+            FavoritesScreen(),
             const ProfileScreen(),
           ];
 

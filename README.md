@@ -36,6 +36,7 @@ It uses Cubit for state management and follows clean architecture principles.
 <p align="center">
   <img src="assets/screenshots/home2.jpg" width="220"/>
   <img src="assets/screenshots/plandetailes.jpg" width="220"/>
+  <img src="assets/screenshots/fav.jpg" width="220"/>
   <img src="assets/screenshots/trainers2.jpg" width="220"/>
   <img src="assets/screenshots/profile.jpg" width="220"/>
   <img src="assets/screenshots/editprofile.jpg" width="220"/>

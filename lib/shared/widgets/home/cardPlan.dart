@@ -4,9 +4,17 @@ import 'package:iron_pulse/core/themes/responsive.dart';
 import 'package:iron_pulse/shared/models/plan_model.dart';
 
 class PlanCard extends StatelessWidget {
-  const PlanCard({super.key, required this.planModel, this.onCardTap});
+  const PlanCard({
+    super.key,
+    required this.planModel,
+    this.onCardTap,
+    required this.isFav,
+    required this.onFavTap,
+  });
   final PlanModel planModel;
   final void Function()? onCardTap;
+  final bool isFav;
+  final VoidCallback onFavTap;
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +60,9 @@ class PlanCard extends StatelessWidget {
                         ),
                         Spacer(),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: onFavTap,
                           icon: Icon(
-                            Icons.favorite_border,
+                            isFav ? Icons.favorite : Icons.favorite_border,
                             color: AppColors.primary,
                           ),
                         ),

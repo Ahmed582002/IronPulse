@@ -8,6 +8,32 @@ class FirebaseService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  String get uid => _auth.currentUser!.uid;
+
+  Future<void> toggleFavorite(String planId) async {
+    final ref = _firestore.collection('users').doc(uid);
+
+    final doc = await ref.get();
+    final data = doc.data() ?? {};
+
+    final favorites = Map<String, dynamic>.from(data['favorites'] ?? {});
+
+    if (favorites.containsKey(planId)) {
+      favorites.remove(planId);
+    } else {
+      favorites[planId] = true;
+    }
+
+    await ref.update({'favorites': favorites});
+  }
+
+  Stream<Map<String, dynamic>> getFavoritesStream() {
+    return _firestore.collection('users').doc(uid).snapshots().map((doc) {
+      final data = doc.data() ?? {};
+      return Map<String, dynamic>.from(data['favorites'] ?? {});
+    });
+  }
+
   /// Convert Base64 to Image bytes
   Uint8List base64ToImage(String base64String) {
     return base64Decode(base64String);
