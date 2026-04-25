@@ -9,6 +9,7 @@ class PlanHome extends StatelessWidget {
   final dio = Dio();
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<PLanCubit>();
     return BlocBuilder<PLanCubit, PLanState>(
       builder: (context, state) {
         if (state is PLanLoading) {
@@ -17,7 +18,12 @@ class PlanHome extends StatelessWidget {
           return ListView.builder(
             itemCount: state.plan.length,
             itemBuilder: (context, ind) {
-              return PlanCard(planModel: state.plan[ind]);
+              return PlanCard(
+                planModel: state.plan[ind],
+                onCardTap: () {
+                  cubit.navigateToDetailes(context, state.plan[ind].id);
+                },
+              );
             },
           );
         }

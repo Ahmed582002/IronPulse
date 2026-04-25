@@ -10,10 +10,12 @@ import 'package:iron_pulse/features/auth/cubit/signup_cubit.dart';
 import 'package:iron_pulse/features/auth/presentation/login_screen.dart';
 import 'package:iron_pulse/features/auth/presentation/signup_screen.dart';
 import 'package:iron_pulse/features/home/cubit/p_lan_cubit.dart';
+import 'package:iron_pulse/features/home/cubit/plandetails_cubit.dart';
 import 'package:iron_pulse/features/home/cubit/trainer_cubit.dart';
 import 'package:iron_pulse/features/home/data/home_repo.dart';
 import 'package:iron_pulse/features/home/data/trainerRepo.dart';
 import 'package:iron_pulse/features/home/presentation/main_screen.dart';
+import 'package:iron_pulse/features/home/presentation/plan_details_view.dart';
 import 'package:iron_pulse/features/onboarding/cubit/onboarding_cubit.dart';
 import 'package:iron_pulse/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:iron_pulse/features/profile/cubit/profile_cubit.dart';
@@ -88,6 +90,16 @@ class AppRouter {
                 ProfileCubit(UserRepo(FirebaseService(), FirebaseAuth.instance))
                   ..getUserProfile(),
             child: const EditProfileScreen(),
+          ),
+        );
+
+      case AppRoute.planDetails:
+        final planId = settings.arguments as int;
+
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => PlandetailsCubit()..getPlanDetails(planId),
+            child: const PlanDetailsView(),
           ),
         );
 
